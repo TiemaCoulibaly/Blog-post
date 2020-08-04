@@ -4,8 +4,17 @@ const ejs = require("ejs");
 
 const app = express();
 
+app.use(express.static("public"));
+app.use(
+	bodyParser.urlencoded({
+		extended: true,
+	})
+);
+
+app.set("view engine", "ejs");
+
 app.get("/", function (req, res) {
-	console.log("hello world");
+	res.render("home");
 });
 
 app.listen(3000, function () {
