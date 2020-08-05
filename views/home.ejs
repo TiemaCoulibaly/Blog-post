@@ -8,8 +8,11 @@
 <div class="card w-75">
   <div class="card-body">
     <h1 class="card-title"> <%= post.titleCompose %></h1>
-    <p class="card-text"> <%= post.contentCompose %></p>
-    <a href="#" class="btn btn-primary">Read more</a>
+    <p class="card-text"> <%= post.contentCompose.substring(0, 110)+ "..." %>
+      <a href="/posts/<%=post.titleCompose%>" class="btn btn-primary">Read more</a>
+    </p>
+
+
   </div>
 </div>
 
