@@ -1,4 +1,18 @@
 <%- include ("partials/header") -%>
-<h1>Home Page</h1>
+
+
+
+<% posts.forEach(function(post){ %>
+
+
+<div class="card w-75">
+  <div class="card-body">
+    <h1 class="card-title"> <%= post.titleCompose %></h1>
+    <p class="card-text"> <%= post.contentCompose %></p>
+    <a href="#" class="btn btn-primary">Read more</a>
+  </div>
+</div>
+
+<% }); %>
 
 <%- include ("partials/footer") -%>
