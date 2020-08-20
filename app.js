@@ -1,7 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const ejs = require("ejs");
 const _ = require("lodash");
+
 
 const app = express();
 
@@ -11,10 +13,25 @@ app.use(
 		extended: true,
 	})
 );
-
 app.set("view engine", "ejs");
 
 let posts = [];
+
+mongoose.connect(
+	"mongodb://localhost:27017/BlogDB", {
+		useNewUrlParser: true,
+	}
+);
+
+
+
+const postSchema = {
+	title: String,
+	content: String,
+};
+
+const Post = mongoose.model("Post", postSchema);
+
 
 app.get("/", function (req, res) {
 	res.render("home", {
@@ -47,13 +64,20 @@ app.get("/posts/:post", function (req, res) {
 });
 
 app.post("/compose", function (req, res) {
-	const composeContenu = {
-		titleCompose: req.body.postTitle,
-		contentCompose: req.body.postContent,
-	};
-	posts.push(composeContenu);
+	const post = new Post({
+
+		title: req.body.postTitle,
+
+		content: req.body.postBody
+
+
+	});
+	post.save();
 	res.redirect("/");
 });
+
+
+
 
 app.listen(3000, function () {
 	console.log("Server started!!");
