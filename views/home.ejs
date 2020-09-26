@@ -1,19 +1,21 @@
-<%- include ("partials/header") -%> <% posts.forEach(function(post){ %>
+<%- include("partials/header"); -%>
 
-<div class="card w-75">
-  <div class="card-body">
-    <h1 class="card-title"><%= post.titleCompose %></h1>
-    <p class="card-text">
-      <%= post.contentCompose.substring(0, 110)+ "..." %>
-      <a href="/posts/<%=post.titleCompose%>">Read more</a>
-    </p>
-  </div>
-</div>
+<h1>Home</h1>
+<p> <%= startingContent %> </p>
 
-<% }); %>
+
+<%  posts.forEach(function(post){ %>
+
+<h1><%=post.title%></h1>
+<p>
+  <%=post.content%>
+  <a href="/posts/<%=post._id%>">Read More</a>
+</p>
+
+
+<% }) %>
 
 <div class="text-center mt-5">
   <a href="/compose" id="button" class="btn btn-danger btn-lg">Compose</a>
 </div>
-
-<%- include ("partials/footer") -%>
+<%- include("partials/footer"); -%>
